@@ -3,7 +3,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./utils/db.js";
-import userRouter from "./routes/user.route.js"
+import userRoute from "./routes/user.route.js"
+import companyRoute from "./routes/company.route.js"
 dotenv.config({});
 
 const app = express();
@@ -19,11 +20,12 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
-app.use("/api/v1/user", userRouter);
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/company", companyRoute);
 
 // "http://localhost:8000/api/v1/user/register"
-// "http://localhost:8000/api/v1/users/login"
-// "http://localhost:8000/api/v1/users/profile/updateProfile"
+// "http://localhost:8000/api/v1/user/login"
+// "http://localhost:8000/api/v1/user/profile/updateProfile"
 
 app.listen(PORT, () => {
     connectDB();
