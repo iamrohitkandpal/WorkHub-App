@@ -10,25 +10,25 @@ export const postJob = async (req, res) => {
                 message: "All fields are required",
                 success: false,
             });
-            const job = await Job.create({
-                title,
-                description,
-                requirements: requirements.split(","),
-                salary: Number(salary),
-                location,
-                jobType,
-                experienceLevel: experience,
-                position,
-                company: companyId,
-                created_by: userId,
-            });
-
-            return res.status(201).json({
-                message: "New Job created successfully",
-                success: true,
-                job,
-            });
         }
+        const job = await Job.create({
+            title,
+            description,
+            requirements: requirements.split(","),
+            salary: Number(salary),
+            location,
+            jobType,
+            experienceLevel: experience,
+            position,
+            company: companyId,
+            created_by: userId,
+        });
+
+        return res.status(201).json({
+            message: "New Job created successfully",
+            success: true,
+            job,
+        });
     } catch (error) {
         console.log(error);
         
@@ -44,7 +44,9 @@ export const getAllJobs = async (req, res) => {
                 {description: {$regex:keyword, $options:"i"}},
             ]
         };
-        const jobs =  await Job.find(query);
+        const jobs =  await Job.find(query).populate({
+            path:"company"
+        }).sort({createdAt:-1});
         if(!jobs){
             return res.status(404).json({
                 message: "No jobs found",
