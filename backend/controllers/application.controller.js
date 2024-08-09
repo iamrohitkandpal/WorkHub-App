@@ -1,4 +1,3 @@
-import { application } from 'express';
 import { Application } from '../models/application.model.js';
 import { Job } from '../models/job.model.js';
 
@@ -79,7 +78,7 @@ export const getAppliedJobs = async (req, res) =>{
 export const getApplicants = async (req, res) => {
     try {
         const jobId = req.params.id;
-        const job = await Job.find({jobId:jobId}).populate({
+        const job = await Job.findById(jobId).populate({
             path:'applications',
             options:{sort:{createdAt:-1}},
             populate:{
