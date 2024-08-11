@@ -43,6 +43,10 @@ const Signup = () => {
                 <Label htmlFor="r2">Recruiter</Label>
               </div>
             </RadioGroup>
+            <div className="flex items-center gap-2">
+                <Label>Profile</Label>
+                <Input accept="imagr/*" type="file" className="cursor-pointer"/>
+            </div>
           </div>
         </form>
       </div>
