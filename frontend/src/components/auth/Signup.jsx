@@ -4,7 +4,7 @@ import Navbar from "../shared/Navbar";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { RadioGroup } from "../ui/radio-group";
-
+import { Button } from "../ui/button";
 
 const Signup = () => {
   return (
@@ -45,9 +45,10 @@ const Signup = () => {
             </RadioGroup>
             <div className="flex items-center gap-2">
                 <Label>Profile</Label>
-                <Input accept="imagr/*" type="file" className="cursor-pointer"/>
+                <Input accept="image/*" type="file" className="cursor-pointer"/>
             </div>
           </div>
+            <Button type="Submit" className="w-full my-4">Sign Up</Button>
         </form>
       </div>
     </div>
