@@ -5,6 +5,7 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { RadioGroup } from "../ui/radio-group";
 import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   return (
@@ -13,7 +14,7 @@ const Signup = () => {
       <div className="flex items-center justify-center max-w-7xl mx-auto">
         <form
           action=""
-          className="w-1/2 shadow-[0px_0px_23px_-5px_rgb(255,163,30,0.5)] rounded-xl p-8 py-6 my-20"
+          className="w-1/2 shadow-[0px_0px_23px_-5px_rgb(255,163,30,0.5)] transition-all duration-500 hover:shadow-[0px_0px_28px_0px_rgb(255,163,30,0.75)] rounded-xl p-8 py-6 my-20"
         >
           <h1 className="font-bold text-xl mb-5">Sign Up</h1>
           <div className="my-3 outline-none">
@@ -49,6 +50,7 @@ const Signup = () => {
             </div>
           </div>
             <Button type="Submit" className="w-full my-4">Sign Up</Button>
+            <span className="flex items-center justify-center text-sm text-gray-500 gap-1">Already Have An Account? <Link to="/login" className="text-[rgb(255,163,30,0.85)]">Login</Link></span>
         </form>
       </div>
     </div>
