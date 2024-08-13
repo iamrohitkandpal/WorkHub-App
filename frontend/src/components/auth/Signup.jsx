@@ -13,7 +13,7 @@ const Signup = () => {
       <div className="flex items-center justify-center max-w-7xl mx-auto">
         <form
           action=""
-          className="w-1/2 border border-[#4a4949] shadow-[0px_0px_23px_-5px_rgb(0,0,0)] rounded-xl p-8 py-6 my-20"
+          className="w-1/2 shadow-[0px_0px_23px_-5px_rgb(255,163,30,0.5)] rounded-xl p-8 py-6 my-20"
         >
           <h1 className="font-bold text-xl mb-5">Sign Up</h1>
           <div className="my-3 outline-none">
@@ -56,21 +56,3 @@ const Signup = () => {
 };
 
 export default Signup;
-
-{/*
-  Heads up! 👋
-
-  Plugins:
-    - @tailwindcss/forms
-*/}
-
-<div>
-  <label htmlFor="UserEmail" className="block text-xs font-medium text-gray-700"> Email </label>
-
-  <input
-    type="email"
-    id="UserEmail"
-    placeholder="john@rhcp.com"
-    className="mt-1 w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
-  />
-</div>
