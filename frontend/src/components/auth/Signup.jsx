@@ -14,7 +14,7 @@ const Signup = () => {
       <div className="flex items-center justify-center max-w-7xl mx-auto">
         <form
           action=""
-          className="w-1/2 shadow-[0px_0px_23px_-5px_rgb(255,163,30,0.5)] transition-all duration-500 hover:shadow-[0px_0px_28px_0px_rgb(255,163,30,0.75)] rounded-xl p-8 py-6 my-20"
+          className="w-1/2 shadow-[0px_0px_23px_-5px_rgb(255,163,30,0.55)] transition-all duration-500 hover:shadow-[0px_0px_28px_0px_rgb(255,163,30,0.75)] rounded-xl p-8 py-6 my-20"
         >
           <h1 className="font-bold text-xl mb-5">Sign Up</h1>
           <div className="my-3 outline-none">
