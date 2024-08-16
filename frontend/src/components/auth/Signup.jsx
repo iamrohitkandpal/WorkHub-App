@@ -7,7 +7,7 @@ import { RadioGroup } from "../ui/radio-group";
 import { Button } from "../ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { USER_API_END_POINT } from "@/utils/constant";
+import { USER_API_END_POINT } from "@/utils/constant.js";
 import { toast } from "sonner";
 
 const Signup = () => {
@@ -31,16 +31,23 @@ const Signup = () => {
   }
   const submitHandler = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('fullname', input.fullname);
+    formData.append('email', input.email);
+    formData.append('phoneNumber', input.phoneNumber);
+    formData.append('password', input.password);
+    formData.append('role', input.role);
+    if(input.file){
+      formData.append('file', input.file);
+    }
     
     try {
-        const res = await axios.post(`${USER_API_END_POINT}/register`, input, {
-          headers: {
-            'Content-Type': 'application/json'
-          },
+        const res = await axios.post(`${USER_API_END_POINT}/register`, formData , {
+          headers: { 'Content-Type': 'multipart/form-data' },
           withCredentials: true,
         });
         if(res.data.success){
-          navigate("/")
+          navigate("/login")
           toast.success(res.data.message);
         }
     } catch (error) {
@@ -59,7 +66,7 @@ const Signup = () => {
             <Label>Full Name</Label>
             <Input type="text" 
                 value={input.fullname}
-                name="fullname" onChange={changeEventHandler}
+                name="fullname" onChange= {changeEventHandler}
                 placeholder="Your Name" 
             />
           </div>
@@ -67,15 +74,15 @@ const Signup = () => {
             <Label>Email Address</Label>
             <Input type="email" 
                 value={input.email}
-                name="email" onChange={changeEventHandler}
+                name="email" onChange= {changeEventHandler}
                 placeholder="Your Email" 
             />
           </div>
           <div className="my-3 outline-none">
             <Label>Phone Number</Label>
-            <Input type="text" 
-                value={input.number}
-                name="number" onChange={changeEventHandler}
+            <Input type="type" 
+                value={input.phoneNumber}
+                name="phoneNumber" onChange= {changeEventHandler}
                 placeholder="Your Phone Number" 
             />
           </div>
@@ -83,7 +90,7 @@ const Signup = () => {
             <Label>Password</Label>
             <Input type="password" 
                 value={input.password}
-                name="password" onChange={changeEventHandler}
+                name="password" onChange= {changeEventHandler}
                 placeholder="Make A Hard One" 
             />
           </div>
@@ -93,7 +100,7 @@ const Signup = () => {
                 <Input type="radio" 
                     name="role" value="student" 
                     checked={input.role === 'student'}
-                    onChange={changeEventHandler}
+                    onChange= {changeEventHandler}
                     className="cursor-pointer"
                 />
                 <Label htmlFor="r1">Student</Label>
@@ -102,7 +109,7 @@ const Signup = () => {
                 <Input type="radio"
                     name="role" value="recruiter"
                     checked={input.role === 'recruiter'}
-                    onChange={changeEventHandler} className="cursor-pointer "
+                    onChange= {changeEventHandler} className="cursor-pointer "
                 />
                 <Label htmlFor="r2">Recruiter</Label>
               </div>
@@ -110,7 +117,7 @@ const Signup = () => {
             <div className="flex items-center gap-2">
                 <Label>Profile</Label>
                 <Input accept="image/*" type="file"
-                    onChange={changeFileHandler}
+                    name="file" onChange= {changeFileHandler}
                     className="cursor-pointer"
                 />
             </div>
