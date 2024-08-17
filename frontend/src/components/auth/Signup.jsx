@@ -132,7 +132,7 @@ const Signup = () => {
           </div>
           
           {
-            loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Login</Button>
+            loading ? <Button className="w-full my-4 bg-[#471aff] duration-500 transition-all hover:bg-[#3113a9]"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4 bg-[#431ae6] duration-500 transition-all hover:bg-[#3113a9]">Sign Up</Button>
           }
 
             <span className="flex items-center justify-center text-sm text-gray-500 gap-1">Already Have An Account? <Link to="/login" className="text-[rgb(255,163,30,0.85)]">Login</Link></span>

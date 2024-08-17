@@ -54,7 +54,7 @@ const Login = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex items-center justify-center max-w-7xl mx-auto">
+      <div className="flex items-center justify-center max-w-7xl mt-10 mx-auto">
         <form
           onSubmit={submitHandler}
           className="w-1/2 shadow-[0px_0px_23px_-5px_rgb(255,163,30,0.5)] transition-all duration-500 hover:shadow-[0px_0px_28px_0px_rgb(255,163,30,0.75)] rounded-xl p-8 py-6 my-20"
@@ -108,7 +108,7 @@ const Login = () => {
             </RadioGroup>
           </div>
           {
-            loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Login</Button>
+            loading ? <Button className="w-full my-4 bg-[#471aff] duration-500 transition-all hover:bg-[#3113a9]"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="bg-[#471aff] duration-500 transition-all hover:bg-[#3113a9] w-full my-4">Login</Button>
           }
           
           <span className="flex items-center justify-center text-sm text-gray-500 gap-1">
