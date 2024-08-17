@@ -22,7 +22,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const loading = useSelector(store => store.auth);
+  const {loading} = useSelector(store => store.auth);
 
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -47,6 +47,7 @@ const Login = () => {
     } 
     finally {
       dispatch(setLoading(false));
+      console.log(loading);
     }
   };
 
@@ -107,7 +108,7 @@ const Login = () => {
             </RadioGroup>
           </div>
           {
-            loading ? <Button className="w-full my-4"> <Loader2 className="mr-2 h-4 w-4 animate-spin"/> Please Wait </Button> : <Button type="Submit" className="w-full my-4"> Log In </Button>
+            loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Login</Button>
           }
           
           <span className="flex items-center justify-center text-sm text-gray-500 gap-1">
