@@ -8,7 +8,7 @@ import Footer from './shared/Footer';
 
 const Home = () => {
   return (
-    <div>
+    <div className='scrollbar-hide'>
         <Navbar />
         <HeroSection />
         <CategoryCarousel />
