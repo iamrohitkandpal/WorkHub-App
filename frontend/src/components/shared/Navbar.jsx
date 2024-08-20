@@ -5,10 +5,11 @@ import { Button } from '../ui/button'
 import { Avatar, AvatarImage } from '../ui/avatar'
 import { LogOut, User2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 
 const Navbar = () => {
-    const user = false;
+    const {user} = useSelector(store => store.auth);
   return (
     <div className="bg-white">
       <div className="flex items-center justify-between mx-auto max-w-7xl mt-2 h-16">
