@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
-import { Button } from '../ui/button'
-import { Avatar, AvatarImage } from '../ui/avatar'
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import { Button } from '../ui/button';
+import { Avatar, AvatarImage } from '../ui/avatar';
 import { LogOut, User2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -48,7 +48,7 @@ const Navbar = () => {
                         <div className="flex flex-col my-2 mx-2 text-gray-600">
                             <div className="flex w-fit items-center gap-2       cursor-pointer">
                                 <User2 size={20} />
-                                <Button variant="link">View Profile</Button>
+                                <Button variant="link"><Link to="/profile">View Profile</Link></Button>
                             </div>
                             <div className="flex w-fit items-center gap-2       cursor-pointer">
                                 <LogOut size={20} color="#f00000" />
@@ -59,8 +59,6 @@ const Navbar = () => {
                 </Popover>
             )
           }
-
-          
         </div>
       </div>
     </div>
