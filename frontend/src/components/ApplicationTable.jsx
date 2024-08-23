@@ -19,7 +19,7 @@ const ApplicationTable = () => {
           </TableHeader>
           <TableBody>
             {
-              [1,2,3,4].map((item, index) => (
+              [1,2,3].map((item, index) => (
                 <TableRow key={index}>
                   <TableCell className='text-left'>23-07-2024</TableCell>
                   <TableCell className='text-left'>Backend Developer</TableCell>

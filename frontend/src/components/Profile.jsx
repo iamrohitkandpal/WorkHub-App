@@ -15,8 +15,8 @@ const Profile = () => {
   return (
     <div>
         <Navbar />
-        <div className='max-w-4xl mx-auto bg-white border border-gray-200 rounded-2xl my-6 p-8'>
-            <div className='flex justify-between items-center'>
+        <div className='max-w-4xl mx-auto bg-white border border-gray-200 rounded-2xl my-6 p-8 pb-4'>
+            <div className='flex justify-between gap-3 items-center'>
                 <div className='flex items-center gap-4'>
                     <Avatar className="w-24 h-24">
                         <AvatarImage src="https://github.com/shadcn.png" alt="Profile Image" />
@@ -37,7 +37,7 @@ const Profile = () => {
                     <Contact/>
                     <span>0000000000</span>
                 </div>
-                <div className=' my-5 flex items-center gap-3'>
+                <div className=' my-7 flex items-center gap-3'>
                     <h1>Skills: </h1>
                     {
                         skills.length !== 0 ? skills.map((item, index) => <Badge className="h-8 px-4 w-max" variant="secondary" key={index}>{item}</Badge>) : <span>Not Added</span>
@@ -52,7 +52,7 @@ const Profile = () => {
             </div>
         </div>
         <div className='max-w-4xl mx-auto bg-white rounded-2xl'>
-            <h1>Applied Jobs</h1>
+            <h1 className='font-medium text-lg my-5 '>Applied Jobs</h1>
             <ApplicationTable/>
         </div>
     </div>
