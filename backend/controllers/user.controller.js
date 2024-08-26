@@ -114,9 +114,13 @@ export const updateProfile = async (req, res) => {
 
         const file = req.file;
 
-        const fileURI = getDataUri(file);
-        const cloudResponse = await cloudinary.uploader.upload(fileURI.content);
+        let fileURI;
+        let cloudResponse;
 
+        if(file) {
+            fileURI = getDataUri(file);
+            cloudResponse = await cloudinary.uploader.upload(fileURI.content);
+        }
 
         let skillsArray;
 
@@ -163,7 +167,10 @@ export const updateProfile = async (req, res) => {
         })
 
     } catch (error){
-        console.log(error);
-        
+        console.log("Error Updating Profile: ", error);
+        return res.status(500).json({
+            message: "Internal Server Error",
+            success: false
+        });
     }
 }

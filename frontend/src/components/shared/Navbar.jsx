@@ -52,7 +52,7 @@ const Navbar = () => {
                             </div>
                             <div className="flex w-fit items-center gap-2       cursor-pointer">
                                 <LogOut size={20} color="#f00000" />
-                                <Button variant="link"      className="text-red-600">Logout</Button>
+                                <Button variant="link" className="text-red-600"><Link to="/logout">Logout</Link></Button>
                             </div>
                         </div>
                     </PopoverContent>
