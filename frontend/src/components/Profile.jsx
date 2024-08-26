@@ -8,12 +8,14 @@ import { Badge } from './ui/badge';
 import { Label } from './ui/label';
 import ApplicationTable from './ApplicationTable';
 import UpdateProfileDialog from './UpdateProfileDialog';
+import { useSelector } from 'react-redux';
 
-const skills = ['HTML', 'CSS', 'JavaScript', 'ReactJS', 'Redux'];
-const HaveResume = true; 
+
 
 const Profile = () => {
     const [open, setOpen] = useState(false);
+    const {user} = useSelector(store => store.auth);
+    const haveResume = user.profile.resume;
 
   return (
     <div>
@@ -25,8 +27,8 @@ const Profile = () => {
                         <AvatarImage src="https://github.com/shadcn.png" alt="Profile Image" />
                     </Avatar>
                     <div>
-                        <h1 className='font-medium text-xl'>Full Name</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, ut quam numquam tenetur vel dolorem.</p>
+                        <h1 className='font-medium text-xl'>{user?.fullname}</h1>
+                        <p>{user?.profile?.bio}</p>
                     </div>
                 </div>
                 <Button onClick={() => setOpen(true)} className="text-right" variant="outline"><Pen /></Button>
@@ -34,22 +36,22 @@ const Profile = () => {
             <div className='my-5'>
                 <div className='flex items-center gap-3 my-2'>
                     <Mail/>
-                    <span>user@gmail.com</span>
+                    <span>{user?.email}</span>
                 </div>
                 <div className='flex items-center gap-3 my-2'>
                     <Contact/>
-                    <span>0000000000</span>
+                    <span>{user?.phoneNumber}</span>
                 </div>
                 <div className=' my-7 flex items-center gap-3'>
                     <h1>Skills: </h1>
                     {
-                        skills.length !== 0 ? skills.map((item, index) => <Badge className="h-8 px-4 w-max" variant="secondary" key={index}>{item}</Badge>) : <span>Not Added</span>
+                        user?.profile?.skills.length !== 0 ? user?.profile?.skills.map((item, index) => <Badge className="h-8 px-4 w-max" variant="secondary" key={index}>{item}</Badge>) : <span>Not Added</span>
                     }
                 </div>
                 <div className='flex max-w-sm items-center gap-3'>
                     <Label className="text-md font-normal">Resume: </Label>
                     {
-                        HaveResume ? <Button className='border-[#fbb854d3]' variant="outline"><a target='blank' href='http://youtube.com'>Download Now</a></Button> : <span>Not Uploaded</span>
+                        haveResume ? <Button className='border-[#fbb854d3]' variant="outline"><a target='blank' href={user?.profile?.resume}>Download Now</a></Button> : <span>Not Uploaded</span>
                     }
                 </div>
             </div>
