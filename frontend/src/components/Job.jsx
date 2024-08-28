@@ -8,11 +8,30 @@ import { useNavigate } from "react-router-dom";
 
 const Job = ({ job }) => {
   const navigate = useNavigate();
+  const daysAgo = (mongodbTime) => {
+    let monthCount = 0, yearCount = 0;
+    const createdAt = new Date(mongodbTime);
+    const currentTime = new Date();
+    const timeDifference = currentTime - createdAt;
+    const inDays = Math.floor(timeDifference / (1000*24*60*60));
+    if(inDays == 0) {
+      return " Today";
+    }
+    if(inDays > 30){
+      monthCount = Math.floor(inDays / 30);
+    } else return inDays + " Days Ago";
+
+    if(monthCount > 12){
+      yearCount = Math.floor(monthCount / 12);
+    } else return monthCount + " Month Ago";
+
+    return yearCount + " Year Ago";
+  }
 
   return (
-    <div className="p-5 rounded-md shadow-xl bg-white border border-gray-100">
+    <div className="p-5 max-w-96 rounded-md shadow-xl bg-white border border-gray-100">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-gray-500">2 days ago</p>
+        <p className="text-sm text-gray-500">{daysAgo(job?.createdAt)}</p>
         <Button variant="outline" className="rounded-full" size="icon">
           <Bookmark />
         </Button>
