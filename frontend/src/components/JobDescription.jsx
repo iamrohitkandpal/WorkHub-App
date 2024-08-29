@@ -1,10 +1,9 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import Navbar from './shared/Navbar';
 import { useParams } from 'react-router-dom';
-import { useEffect } from "react";
 import { APPLY_API_END_POINT, JOB_API_END_POINT } from "@/utils/constant";
 import axios from "axios";
 import { setSingleJob } from "@/redux/jobSlice";
@@ -16,9 +15,12 @@ const JobDescription = () => {
     const params = useParams();
     const jobId = params.id;
     const dispatch = useDispatch();
+
     const {singleJob} = useSelector(store => store.job);
     const {user} = useSelector(store => store.auth);
-    const isApplied = singleJob?.applications?.some(application => application.applicant === user?._id || false);
+    
+    const isInitiallyApplied = singleJob?.applications?.some(application => application === user?._id);
+    const [isApplied, setIsApplied] = useState(isInitiallyApplied);
 
     const applyJobHandler = async () => {
         try {
@@ -26,6 +28,9 @@ const JobDescription = () => {
             console.log(res.data);
 
             if(res.data.success) {
+                setIsApplied(true);
+                const updatedSingleJob = {...singleJob, applications:[...singleJob.applications, {applicant:user?._id}]};
+                dispatch(setSingleJob(updatedSingleJob));
                 toast.success(res.data.message);
             }
         } catch (error) {
@@ -42,13 +47,15 @@ const JobDescription = () => {
             });
             if (res.data.success) {
               dispatch(setSingleJob(res.data.job));
+              setIsApplied(res.data.job.applications.some(application => application === user?._id));
+              
             }
           } catch (error) {
             console.log(error);
           }
         };
         fetchSingleJob();
-      }, [jobId, dispatch, singleJob?._id]);
+      }, [jobId, dispatch, user?._id, singleJob?.applications]);
 
     return (
       <>
@@ -63,7 +70,7 @@ const JobDescription = () => {
                           <Badge className={'text-[#3613c5] font-bold'} variant="ghost">{singleJob?.salary} LPA</Badge>
                       </div>
                   </div>
-                  <Button onClick={isApplied ? null : applyJobHandler} disabled={isApplied}
+                  <Button onClick={!isApplied ? applyJobHandler : null} disabled={isApplied}
                   className={`rounded-lg duration-400 transition-all ${isApplied ? 'bg-[#494655] hover:bg-[#3506ef] transition-all duration-700 cursor-not-allowed' : 'bg-[#ffa31a] hover:bg-[#e79212] hover:shadow-2xl hover:scale-95 transition-all duration-700'}`}>{ isApplied ? 'Already Applied' : 'Apply Now' }</Button>
               </div>
               <div className='my-4 bg-zinc-100 shadow-xl border-2 border-zinc-200 px-5 py-8 rounded-xl'>
