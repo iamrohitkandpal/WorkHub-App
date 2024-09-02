@@ -25,7 +25,7 @@ const rootReducer = combineReducers({
   job: jobSlice,
 })
 
-const persistedReducer = persistedReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,

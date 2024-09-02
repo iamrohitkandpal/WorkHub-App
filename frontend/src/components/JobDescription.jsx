@@ -18,14 +18,14 @@ const JobDescription = () => {
 
     const {singleJob} = useSelector(store => store.job);
     const {user} = useSelector(store => store.auth);
-    
-    const isInitiallyApplied = singleJob?.applications?.some(application => application === user?._id);
+     
+    const isInitiallyApplied = singleJob?.applications?.some(application => application.applicant === user?._id) || false;
     const [isApplied, setIsApplied] = useState(isInitiallyApplied);
 
     const applyJobHandler = async () => {
         try {
             const res = await axios.get(`${APPLY_API_END_POINT}/apply/${jobId}`, {withCredentials:true});
-            console.log(res.data);
+            console.log(res);
 
             if(res.data.success) {
                 setIsApplied(true);
@@ -47,15 +47,14 @@ const JobDescription = () => {
             });
             if (res.data.success) {
               dispatch(setSingleJob(res.data.job));
-              setIsApplied(res.data.job.applications.some(application => application === user?._id));
-              
+              setIsApplied(res.data.job.applications.some(application => application.applicant === user?._id));
             }
           } catch (error) {
             console.log(error);
           }
         };
         fetchSingleJob();
-      }, [jobId, dispatch, user?._id, singleJob?.applications]);
+      }, [jobId, dispatch, user?._id]);
 
     return (
       <>
@@ -70,7 +69,7 @@ const JobDescription = () => {
                           <Badge className={'text-[#3613c5] font-bold'} variant="ghost">{singleJob?.salary} LPA</Badge>
                       </div>
                   </div>
-                  <Button onClick={!isApplied ? applyJobHandler : null} disabled={isApplied}
+                  <Button onClick={isApplied ? null : applyJobHandler} disabled={isApplied}
                   className={`rounded-lg duration-400 transition-all ${isApplied ? 'bg-[#494655] hover:bg-[#3506ef] transition-all duration-700 cursor-not-allowed' : 'bg-[#ffa31a] hover:bg-[#e79212] hover:shadow-2xl hover:scale-95 transition-all duration-700'}`}>{ isApplied ? 'Already Applied' : 'Apply Now' }</Button>
               </div>
               <div className='my-4 bg-zinc-100 shadow-xl border-2 border-zinc-200 px-5 py-8 rounded-xl'>
