@@ -39,9 +39,20 @@ const Navbar = () => {
         </h1>
         <div className="flex items-center gap-10">
           <ul className="flex font-medium items-center gap-10">
-            <Link to="/"><li>Home</li></Link>
-            <Link to="/jobs"><li>Jobs</li></Link>
-            <Link to="/browse"><li>Browse</li></Link>
+            {
+              user && user.role === 'recruiter' ? (
+                <>
+                  <Link to="/admin/companies"><li>Companies</li></Link>
+                  <Link to="/admin/jobs"><li>Jobs</li></Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/"><li>Home</li></Link>
+                  <Link to="/jobs"><li>Jobs</li></Link>
+                  <Link to="/browse"><li>Browse</li></Link>    
+                </>
+              )
+            }
           </ul>
           {
             !user ? (
@@ -67,10 +78,14 @@ const Navbar = () => {
                             </div>
                         </div>
                         <div className="flex flex-col my-2 mx-2 text-gray-600">
-                            <div className="flex w-fit items-center gap-2       cursor-pointer">
-                                <User2 size={20} />
-                                <Button variant="link"><Link to="/profile">View Profile</Link></Button>
-                            </div>
+                            {
+                              user && user.role === 'student' && (
+                                <div className="flex w-fit items-center gap-2 cursor-pointer">
+                                  <User2 size={20} />
+                                  <Button variant="link"><Link to="/profile">View Profile</Link></Button>
+                                </div>
+                              )
+                            }
                             <div className="flex w-fit items-center gap-2 cursor-pointer">
                                 <LogOut size={20} color="#f00000" />
                                 <Button variant="link" onClick={logoutHandler} className="text-red-600">Logout</Button>
