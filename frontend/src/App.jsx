@@ -7,6 +7,8 @@ import Browse from "./components/Browse";
 import Profile from "./components/Profile";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import JobDescription from "./components/JobDescription";
+import Companies from "./components/admin/Companies";
+import CreateCompany from './components/admin/CreateCompany';
 
 const appRouter = createBrowserRouter([
   {
@@ -36,6 +38,14 @@ const appRouter = createBrowserRouter([
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/admin/companies",
+    element: <Companies />,
+  },
+  {
+    path: "/admin/companies/create",
+    element: <CreateCompany />,
   },
 ]);
 function App() {
