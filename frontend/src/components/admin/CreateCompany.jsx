@@ -7,9 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import { COMPANY_API_END_POINT } from '@/utils/constant';
 import axios from 'axios';
 import { toast } from 'sonner';
+import { useDispatch } from 'react-redux';
+import { setSingleCompany } from '@/redux/companySlice';
 
 const CreateCompany = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [companyName, setCompanyName] = useState();
     const registerNewCompany = async () => {
         try {
@@ -20,12 +23,14 @@ const CreateCompany = () => {
                 withCredentials: true,
             });
             if(res?.data?.success){
+                dispatch(setSingleCompany(res.data.company));
                 toast.success(res.data.message);
                 const companyId = res?.data?.company?._id;
                 navigate(`/admin/companies/${companyId}`);
             }
         } catch (error) {
             console.log(error);   
+            toast.error(error.data.message);
         }
     }
 
@@ -47,7 +52,7 @@ const CreateCompany = () => {
                 />
                 <div className='flex items-center gap-2 my-10'>
                     <Button variant="outline" onClick={() => navigate("/admin/companies")}>Cancel</Button>
-                    <Button onClick={() => registerNewCompany}>Continue</Button>
+                    <Button onClick={registerNewCompany}>Continue</Button>
                 </div>
             </div>
         </div>

@@ -10,7 +10,7 @@ const CompaniesTable = () => {
   return (
     <div>
       <Table>
-        <TableCaption>Your Recently Registered Comapies</TableCaption>
+        <TableCaption>Your Recently Registered Companies</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>Logo</TableHead>
