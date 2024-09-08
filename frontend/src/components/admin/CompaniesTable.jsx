@@ -49,7 +49,7 @@ const CompaniesTable = () => {
                           <MoreHorizontal />
                         </PopoverTrigger>
                         <PopoverContent className="w-32 rounded-xl">
-                          <div className="flex items-center gap-5 cursor-pointer w-min">
+                          <div className="flex items-center gap-6 cursor-pointer w-min">
                             <Edit2 className="w-4" />
                             <span className="text-md">Edit</span>
                           </div>
