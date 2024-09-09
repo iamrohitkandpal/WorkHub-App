@@ -15,7 +15,9 @@ import { Edit2, MoreHorizontal } from "lucide-react";
 import { useSelector } from "react-redux";
 
 const CompaniesTable = () => {
-  const { companies } = useSelector((store) => store.company);
+  const { companies } = useSelector(store => store.company);
+  console.log(companies);
+  
   return (
     <div>
       <Table>
@@ -29,7 +31,7 @@ const CompaniesTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {companies.length <= 0 ? (
+          {companies?.length <= 0 ? (
             <span>No Companies Registered Yet</span>
           ) : (
             <>

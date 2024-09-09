@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react'
 import Navbar from './../shared/Navbar';
 import { Input } from '../ui/input';
@@ -30,7 +31,7 @@ const CreateCompany = () => {
             }
         } catch (error) {
             console.log(error);   
-            toast.error(error.data.message);
+            toast.error(error.response.data.message);
         }
     }
 

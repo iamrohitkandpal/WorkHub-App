@@ -27,7 +27,7 @@ export const registerCompany = async (req, res) =>{
             message:"Company Registered successfully",
             company,
             success: true,
-        })
+        });
     } catch (error) {
         console.log(error);
         
