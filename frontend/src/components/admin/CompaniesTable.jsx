@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableCaption,
@@ -13,10 +13,24 @@ import { Avatar, AvatarImage } from "../ui/avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Edit2, MoreHorizontal } from "lucide-react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const CompaniesTable = () => {
-  const { companies } = useSelector((store) => store.company);
-  console.log(companies);
+  const { companies, searchCompanyByText } = useSelector((store) => store.company);
+  const [filterCompany, setFilterCompany] = useState(companies);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const filteredCompany = companies.length >= 0 && companies.filter((company) => {
+      if(!searchCompanyByText){
+        return true;
+      };
+      return company?.name?.toLowerCase().includes(searchCompanyByText.toLowerCase());
+    });
+
+    setFilterCompany(filteredCompany);
+  }, [companies, searchCompanyByText])
+  console.log(filterCompany);
 
   return (
     <div>
@@ -31,7 +45,7 @@ const CompaniesTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {companies.map((company) => (
+          {filterCompany.map((company) => (
             <tr key={company._id} className="border-b-[1px] border-zinc-300">
               <TableCell>
                 <Avatar>
@@ -45,9 +59,9 @@ const CompaniesTable = () => {
                   <PopoverTrigger>
                     <MoreHorizontal />
                   </PopoverTrigger>
-                  <PopoverContent className="w-32 rounded-xl">
-                    <div className="flex items-center gap-6 cursor-pointer w-min">
-                      <Edit2 className="w-4" />
+                  <PopoverContent className="w-28 flex items-center justify-center rounded-xl">
+                    <div  onClick={() => navigate(`/admin/companies/${company._id}`)} className="flex items-center gap-2 justify-center cursor-pointer w-24">
+                      <Edit2 className="w-4"/>
                       <span className="text-md">Edit</span>
                     </div>
                   </PopoverContent>
