@@ -5,19 +5,19 @@ import { Input } from "../ui/input";
 import { Button } from "@/components/ui/button";
 import JobsTable from "./JobsTable";
 import { useNavigate } from "react-router-dom";
-import useGetAllCompanies from "@/hooks/useGetAllCompanies";
 import { useDispatch } from "react-redux";
-import { setSearchCompanyByText } from "@/redux/companySlice";
+import useGetAllAdminJobs from "@/hooks/useGetAllAdminJobs";
+import { setSearchJobByText } from "@/redux/jobSlice";
 
 const AdminJobs = () => {
-  useGetAllCompanies();
+  useGetAllAdminJobs();
 
   const [input, setInput] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setSearchCompanyByText(input))
+    dispatch(setSearchJobByText(input))
   }, [input, dispatch]);
   return (
     <div>
@@ -30,7 +30,7 @@ const AdminJobs = () => {
               placeholder="Filter by Name"
               onChange={(e) => setInput(e.target.value)}
             />
-            <Button onClick={() => navigate("/admin/companies/create")}>
+            <Button onClick={() => navigate("/admin/jobs/create")}>
               Add New Jobs
             </Button>
           </div>
