@@ -38,9 +38,9 @@ const Job = ({ job }) => {
       </div>
 
       <div className="flex items-center gap-2 my-2">
-        <Button className="p-6" variant="outline" size="icon">
+        <Button className="p-6 rounded-full" variant="outline" size="icon">
           <Avatar>
-            <AvatarImage src="https://th.bing.com/th?id=OIP.2AmwrTnE_ys6QNCFe6iKRwHaHa& w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2" />
+            <AvatarImage src={job?.company?.logo} />
           </Avatar>
         </Button>
 
@@ -52,7 +52,7 @@ const Job = ({ job }) => {
 
       <div>
         <h1 className="text-lg font-bold">{job?.title}</h1>
-        <p className="text-sm text-gray-600">{job?.description}</p>
+        <p className="text-sm h-24 truncate text-wrap text-gray-600">{job?.description}</p>
       </div>
       <div className="flex items-center gap-2 mt-4">
         <Badge className={"text-[#471aff] font-bold"} variant="ghost">

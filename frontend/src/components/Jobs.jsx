@@ -22,7 +22,7 @@ const Jobs = () => {
             <span>No Jobs Found</span>
           ) : (
             <div className="flex-1 h-[100vh] scrollbar-hide overflow-y-auto pb-5">
-              <div className="grid grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
+              <div className="grid grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
                 {allJobs.map((job) => (
                   <div key={job?._id}>
                     <Job job={job}/>
