@@ -55,7 +55,7 @@ const JobsTable = () => {
                   <PopoverTrigger>
                     <MoreHorizontal />
                   </PopoverTrigger>
-                  <PopoverContent className="w-fit rounded-xl">
+                  <PopoverContent className="w-36 rounded-xl">
                     <div  onClick={() => navigate(`/admin/companies/${job._id}`)} className="flex items-center gap-2 cursor-pointer w-fit">
                       <Edit2 className="w-4"/>
                       <span className="text-md">Edit</span>
