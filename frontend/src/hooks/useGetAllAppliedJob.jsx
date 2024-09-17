@@ -15,6 +15,7 @@ const useGetAppliedJobs = () => {
             }
         }
         fetchAppliedJobs();
+        const mew = 2000;
     })
 }
 
