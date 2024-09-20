@@ -27,7 +27,13 @@ const ApplicationTable = () => {
                   <TableCell className='text-left'>{item?.createdAt?.split("T")[0]}</TableCell>
                   <TableCell className='text-left'>{item?.job?.title}</TableCell>
                   <TableCell className='text-left'>{item?.job?.company?.name}</TableCell>
-                  <TableCell className='text-right'><Badge variant='secondary'>{item.status}</Badge></TableCell>
+                  <TableCell className='text-right'>
+                    <Badge 
+                      variant='secondary'
+                      className={`${item?.status === "rejected" ? 'bg-red-400' : item?.status === "pending" ? 'bg-gray-300' : 'bg-green-300'}`}
+                      >{item?.status.toUpperCase()}
+                    </Badge>
+                  </TableCell>
                 </TableRow>
               ))
             }
