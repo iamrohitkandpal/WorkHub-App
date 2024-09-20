@@ -18,9 +18,11 @@ const JobsTable = () => {
   const { allAdminJobs, searchJobByText } = useSelector((store) => store.job);
   const [filterJobs, setFilterJobs] = useState(allAdminJobs);
   const navigate = useNavigate();
+  console.log(allAdminJobs);
+  
 
   useEffect(() => {
-    const filteredJob = allAdminJobs.length >= 0 && allAdminJobs.filter((job) => {
+    const filteredJob = allAdminJobs?.length >= 0 && allAdminJobs.filter((job) => {
       if(!searchJobByText){
         return true;
       };
@@ -44,7 +46,7 @@ const JobsTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {filterJobs.map((job) => (
+          {filterJobs?.map((job) => (
             <tr key={job?._id} className="border-b-[1px] border-zinc-300">
               <TableCell>{job?.company?.name}</TableCell>
               <TableCell>{job?.title}</TableCell>
