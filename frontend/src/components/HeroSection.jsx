@@ -20,9 +20,7 @@ const HeroSection = () => {
 
   const enterJobHandler = (event) => {
     if(event.key === "Enter"){
-      event.preventDefault();
       searchJobHandler();
-      setQuery("");
     }
   }
 

@@ -8,14 +8,19 @@ import Footer from './shared/Footer';
 import useGetAllJobs from '@/hooks/useGetAllJobs';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setSearchedQuery } from '@/redux/jobSlice';
 
 const Home = () => {
   useGetAllJobs();
   const {user} = useSelector(store => store.auth);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   useEffect(()=>{
     if(user?.role === 'recruiter'){
       navigate("/admin/companies")
+      dispatch(setSearchedQuery(""));
     }
   });
   
