@@ -1,10 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react'
 import { Badge } from './ui/badge'
+import { useNavigate } from 'react-router-dom'
 
 const LatestJobCards = ({job}) => {
+  const navigate = useNavigate();
+
   return (
-    <div className='p-8 py-5 rounded-lg shadow-xl bg-white border-gray-700 cursor-pointer'>
+    <div onClick={() => navigate(`/description/${job._id}`)} className='p-8 py-5 rounded-lg shadow-xl bg-white border-gray-700 cursor-pointer'>
         <div>
             <h1 className='font-bold text-lg my-1'>{job?.title}</h1>
             <p className='text-sm text-gray-500'><span className='font-semibold'>{job?.company?.name}</span>, {job?.location}</p>
