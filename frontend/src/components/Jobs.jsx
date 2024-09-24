@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./shared/Navbar";
 import FilterCard from "./FilterCard";
 import Job from "./Job";
@@ -7,7 +7,18 @@ import Footer from "./shared/Footer";
 import { useSelector } from "react-redux";
 
 const Jobs = () => {
-  const { allJobs } = useSelector((store) => store.job);
+  const { allJobs, searchedQuery } = useSelector((store) => store.job);
+  const [filterJobs, setFilterJobs] = useState(allJobs);
+
+  useEffect(() => {
+    if(searchedQuery){
+      const filteredJobs = allJobs.filter(job => {
+        return job.title.toLowerCase().includes(searchedQuery.toLowerCase()) || job.description.toLowerCase().includes(searchedQuery.toLowerCase()) || job.location.toLowerCase().includes(searchedQuery.toLowerCase()) || job.salary.toLowerCase().includes(searchedQuery.toLowerCase())
+      })
+    } else {
+      setFilterJobs(allJobs);
+    }
+  }, [allJobs, searchedQuery]);
 
   return (
     <div>
