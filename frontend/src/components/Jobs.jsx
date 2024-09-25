@@ -13,8 +13,9 @@ const Jobs = () => {
   useEffect(() => {
     if(searchedQuery){
       const filteredJobs = allJobs.filter(job => {
-        return job.title.toLowerCase().includes(searchedQuery.toLowerCase()) || job.description.toLowerCase().includes(searchedQuery.toLowerCase()) || job.location.toLowerCase().includes(searchedQuery.toLowerCase()) || job.salary.toLowerCase().includes(searchedQuery.toLowerCase())
+        return job.title.toLowerCase().includes(searchedQuery.toLowerCase()) || job.description.toLowerCase().includes(searchedQuery.toLowerCase()) || job.location.toLowerCase().includes(searchedQuery.toLowerCase()) || job.salary.toLowerCase().includes(searchedQuery.toLowerCase());
       })
+      setFilterJobs(filteredJobs);
     } else {
       setFilterJobs(allJobs);
     }
@@ -29,12 +30,12 @@ const Jobs = () => {
             <FilterCard />
           </div>
 
-          {allJobs.length <= 0 ? (
+          {filterJobs.length <= 0 ? (
             <span>No Jobs Found</span>
           ) : (
             <div className="flex-1 h-[100vh] scrollbar-hide overflow-y-auto pb-5">
               <div className="grid grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
-                {allJobs.map((job) => (
+                {filterJobs.map((job) => (
                   <div key={job?._id}>
                     <Job job={job}/>
                   </div>
