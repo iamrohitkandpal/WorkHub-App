@@ -5,6 +5,7 @@ import FilterCard from "./FilterCard";
 import Job from "./Job";
 import Footer from "./shared/Footer";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
 
 const Jobs = () => {
   const { allJobs, searchedQuery } = useSelector((store) => store.job);
@@ -36,9 +37,9 @@ const Jobs = () => {
             <div className="flex-1 h-[100vh] scrollbar-hide overflow-y-auto pb-5">
               <div className="grid grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
                 {filterJobs.map((job) => (
-                  <div key={job?._id}>
+                  <motion.div initial={{opacity:0, x:100}} key={job?._id}>
                     <Job job={job}/>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
